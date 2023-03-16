@@ -34,6 +34,10 @@
 	<p> Press the button to create an new element of type div and then add it to the container.
 		</p>
 		<button onclick="makeNewDiv()">Add value</button>
+		<button class="btn btn-warning" onclick="get()">Get</button>
+        <button class="btn btn-info" onclick="delay()">Delay</button>
+		<button class="btn btn-primary" onclick="promotion()">Promote</button>
+     	
         
   <script>
     function makeNewDiv() {
@@ -44,6 +48,37 @@
       let container = document.getElementById("target");
       container.appendChild(x);
     }
+
+	function get(){
+			let queueItems = document.getElementsByClassName("delayQ")
+			console.log(queueItems)
+			let length_elements = queueItems.length
+			if (length_elements>0){
+				queueItems[length_elements-1].remove()
+			}
+	}
+	function delay(){
+			let queueItems = document.getElementsByClassName("delayQ")
+			let length_elements = queueItems.length
+			if(length_elements==0 || length_elements==1){
+				console.log("Not enough elements to delay")
+			}else{
+				let removedItem = queueItems[length_elements-1]
+				queueItems[length_elements-1].remove()
+				console.log(removedItem)
+				let container_div = document.getElementById("target")
+				container_div.insertBefore(removedItem,container_div.firstChild)
+			}
+	}
+
+	function promotion(){
+        let queueItems = document.getElementsByClassName("delayq");
+        let length = queueItems.length;
+        let queueItem = document.getElementsByClassName("delayq")[Math.floor(Math.random() * length)];
+        let container = document.getElementById("target");
+        container.insertBefore(queueItem, container.firstChild);
+    }
+	
   </script>
 	
 	
